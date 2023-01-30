@@ -51,6 +51,8 @@ class MyComponent extends JComponent {
     public void paintComponent(Graphics g) {
         var g2 = (Graphics2D) g;
 
+        g2.setPaint(Color.MAGENTA);
+
         double leftX = 100;
         double leftY = 100;
         double width = 200;
@@ -64,7 +66,7 @@ class MyComponent extends JComponent {
         //elipsa
         var ellipse = new Ellipse2D.Double();
         ellipse.setFrame(rect);
-        g2.draw(ellipse);
+        g2.fill(ellipse);
 
         // przekatna
         g2.draw(new Line2D.Double(leftX,leftY,leftX + width,leftY+ height));
