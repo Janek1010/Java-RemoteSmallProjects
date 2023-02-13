@@ -11,6 +11,16 @@ import java.awt.geom.Rectangle2D;
 public class Main {
 
     public static void main(String[] args) {
+        // Sprawdzanie czcionek w komputerze
+//        String[] fontNames = GraphicsEnvironment
+//                .getLocalGraphicsEnvironment()
+//                .getAvailableFontFamilyNames();
+//        for (String fontName: fontNames){
+//            System.out.println(fontName);
+//        }
+
+
+
         EventQueue.invokeLater(() ->
                 {
                     var frame = new NotHelloWorldFrame();
@@ -36,7 +46,9 @@ public class Main {
 class NotHelloWorldFrame extends JFrame{
     public NotHelloWorldFrame()
     {
+
         add(new MyComponent());
+        add(new MyComponent2());
         pack();
     }
 }
@@ -78,6 +90,28 @@ class MyComponent extends JComponent {
         var circle = new Ellipse2D.Double();
         circle.setFrameFromCenter(centerX,centerY,centerX+radius,centerY+radius);
         g2.draw(circle);
+
+    }
+    public Dimension getPrefferedSize() {
+        return new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    }
+}
+class MyComponent2 extends JComponent {
+    // lewy gorny od ktorego rysujemy
+    public static final int MESSAGE_X = 1600;
+    public static final int MESSAGE_Y = 1600;
+
+    public static final int DEFAULT_WIDTH = 300;
+    public static final int DEFAULT_HEIGHT = 200;
+
+    public void paintComponent(Graphics g) {
+        var g2 = (Graphics2D) g;
+
+        g2.setPaint(Color.RED);
+        var sansbold14 = new Font("SansSerif", Font.BOLD, 48);
+        g2.setFont(sansbold14);
+        var message = "Witaj, swiecie";
+        g2.drawString(message,75,100);
 
     }
     public Dimension getPrefferedSize() {
