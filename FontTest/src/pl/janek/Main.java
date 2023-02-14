@@ -17,6 +17,13 @@ public class Main {
                     frame.setTitle("FontTest");
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frame.setVisible(true);
+
+                    Toolkit kit = Toolkit.getDefaultToolkit();
+                    Dimension screenSize = kit.getScreenSize();
+                    int screenWidth = screenSize.width;
+                    int screenHeight = screenSize.height;
+                    frame.setLocation(screenWidth / 4, screenHeight / 4);
+                    frame.setSize(screenWidth / 2, screenHeight / 2);
                 }
         );
     }
@@ -25,10 +32,29 @@ class FontFrame extends JFrame
 {
     public FontFrame()
     {
-        add(new FontComponent());
+        add(new ImageComponent());
         pack();
     }
 }
+class ImageComponent extends JComponent
+{
+    private static final int DEFAULT_WIDTH = 300;
+    private static final int DEFAULT_HEIGHT = 200;
+
+    public void paintComponent(Graphics g)
+    {
+
+        Image image = new ImageIcon("AgataPierdas.jpg").getImage();
+
+        g.drawImage(image,10,10,null);
+    }
+    public Dimension getPreferredSize(){
+        return new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    }
+
+}
+
+// zarysowanie prostokata fonta
 class FontComponent extends JComponent
 {
     private static final int DEFAULT_WIDTH = 300;
